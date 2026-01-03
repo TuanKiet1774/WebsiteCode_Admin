@@ -1,0 +1,224 @@
+/* =========================
+   LAYOUT
+========================= */
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: #1e1e2f;
+    color: #fff;
+    padding: 16px;
+    transition: width .3s ease;
+    box-shadow: 4px 0 20px rgba(0,0,0,.35);
+}
+
+.sidebar.collapsed {
+    width: 80px;
+}
+
+/* =========================
+   SIDEBAR HEADER
+========================= */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+    margin-bottom: 16px;
+}
+
+/* Logo */
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sidebar-logo img {
+    height: 34px;
+    transition: transform .3s ease;
+}
+
+/* Khi collapse → logo mini */
+.sidebar.collapsed .sidebar-logo img {
+    transform: scale(0.9);
+}
+
+/* =========================
+   TOGGLE BUTTON
+========================= */
+.sidebar-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background: none;
+    color: #fff;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background .25s ease, transform .25s ease;
+}
+
+/* =========================
+   MENU
+========================= */
+.sidebar .nav {
+    margin-top: 8px;
+}
+
+.sidebar .nav-link {
+    color: #ccc;
+    border-radius: 8px;
+    padding: 10px 14px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+    transition: background .25s, color .25s, box-shadow .25s;
+}
+
+/* Hover */
+.sidebar .nav-link:hover {
+    background: #343a40;
+    color: #fff;
+    box-shadow: 0 6px 15px rgba(0,0,0,.3);
+}
+
+/* Active */
+.sidebar .nav-link.active {
+    background: linear-gradient(135deg, #0d6efd, #5b9dff);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(13,110,253,.5);
+}
+
+/* Icon */
+.sidebar .nav-link i {
+    font-size: 16px;
+    transition: transform .25s ease;
+}
+
+.sidebar .nav-link:hover i {
+    transform: scale(1.15);
+}
+
+/* =========================
+   RIPPLE EFFECT (CLICK)
+========================= */
+.sidebar .nav-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255,255,255,.25) 10%, transparent 11%);
+    background-size: 0 0;
+    background-position: center;
+    opacity: 0;
+    transition: background-size .4s ease, opacity .6s;
+    border-radius: 8px;
+}
+
+.sidebar .nav-link:active::after {
+    background-size: 1200% 1200%;
+    opacity: 1;
+    transition: 0s;
+}
+
+/* =========================
+   COLLAPSED MODE
+========================= */
+.sidebar.collapsed .link-text {
+    display: none;
+}
+
+.sidebar.collapsed .nav-link {
+    justify-content: center;
+
+}
+
+/* =========================
+   TOOLTIP (ICON MODE)
+========================= */
+.sidebar.collapsed .nav-link::before {
+    content: attr(data-title);
+    position: absolute;
+    left: 90px;
+    background: #000;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s;
+}
+
+.sidebar.collapsed .nav-link:hover::before {
+    opacity: 1;
+    gap: 12 !important;
+    font-size: 20px !important;
+}
+
+/* =========================
+   CONTENT
+========================= */
+.content {
+    flex: 1;
+    padding: 40px;
+    background: #f8f9fa;
+}
+
+/* =========================
+   LOGO FULL / MINI SWITCH
+========================= */
+
+/* Căn logo header cho đều */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo container */
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    height: 36px;
+}
+
+/* Logo full (mặc định) */
+.logo-full {
+    height: 36px;
+    display: block;
+}
+
+/* Logo mini (ẩn mặc định) */
+.logo-mini {
+    border: 2px solid yellow;
+    height: 32px;
+    border-radius: 50%;
+    display: none;
+}
+
+/* Khi sidebar collapse */
+.sidebar.collapsed .logo-full {
+    display: none;
+}
+
+.sidebar.collapsed .logo-mini {
+    display: block;
+}
+
+.sidebar.collapsed .nav-link i {
+    gap: 12;
+    font-size: 20px;
+}
